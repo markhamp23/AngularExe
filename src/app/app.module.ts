@@ -3,14 +3,32 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule, MatIconModule, MatMenuModule} from "@angular/material";
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserAnimationsModule,
+    BrowserModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule
+  ],
+  exports: [
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+
+
+
