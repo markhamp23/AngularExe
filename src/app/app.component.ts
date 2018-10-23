@@ -5,117 +5,141 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'exercici hola';
+export class AppComponent {
 
-  heros: string[] = ["Superman", "Batman", "Spiderman", "Ironman", "Hulk", "Magneto"];
-
-  herosObject: Hero[] = [];
-
-  recuperat: boolean = false;
+  llistatHeros = new LlistaHeros();
 
   constructor() {
-    //console.log(this.heros.toString());
-    this.herosObject.push(new Hero("Superman", 10, "Velocitat", 5000, 1930));
-    this.herosObject.push(new Hero("Batman", 10, "Velocitat", 5000, 1930));
-    this.herosObject.push(new Hero("Spiderman", 10, "Velocitat", 5000, 1930));
-    this.herosObject.push(new Hero("Ironman", 10, "Velocitat", 5000, 1930));
-    this.herosObject.push(new Hero("Hulk", 1000, "Força", 50, 1970));
-    this.herosObject.push(new Hero("Magneto", 10, "Velocitat", 5000, 1930));
   }
 
   recuperarDades(event) {
-    this.recuperat = !this.recuperat;
+    event.preventDefault();
+    // // console.log(event);
+    // // //TODO: completar el formulari amb les dades Hero
+    // // //TODO: recuperar les dades del formulari
+    // // //TODO: afegir les dades d'un hero a una llista d'hero => Hero[]
+    // // //TODO: Override ToString Hero
+    // // //debugger;
+
+    //Recuperar dades del formulari
+    console.log("NODES PARE", event.target.parentNode.children);
+    var children = event.target.parentNode.children;
+
+    var nom = children[0].children[1].value;
+    var forca = children[2].children[1].value;
+    var poderSuprem = children[4].children[1].value;
+    var velocitat = children[6].children[1].value;
+    var any = children[8].children[1].value;
+
+    //Afegir les dades d'un hero
+    let hero: Hero = new Hero( nom,forca,poderSuprem,velocitat,any);
+
+    //Afegir un heroi a un llistat
+    this.llistatHeros.addHero(hero);
+    console.log(this.llistatHeros.getLlistatHeros().toString());
+
+    // // let listHeros: Hero[];
+    // // listHeros = [];
+
+    // // listHeros.forEach((x) => {
+    // //   console.log("HERO", x);
+    // // });
+    // //
+    // // for (let i = 0; i < listHeros.length; i++) {
+    // //   console.log(listHeros[i]);
+    // // }
+
+    // // //let listHeros: Hero[] = [];
+
+    // let classe1: Classe;
+    // classe1 = new Classe();
+    // classe1.id = 1;
+    // classe1.nom = "A1";
+    //
+    // let alumne1: Alumne = new Alumne("Pep", "Garcia", "454V", new Date);
+    // let alumne2: Alumne = new Alumne("Maria", "Romera", "5444Q", new Date());
+    //
+    // classe1.addAlumne(alumne1);
+    // classe1.addAlumne(alumne2);
+    //
+    // console.log(classe1.getLlistatAlumnes());
+
+    return false;
+
+    //debugger
+  }
+}
+
+class Classe {
+  id: number;
+  nom: string;
+  public alumnes: Alumne[] = null;
+
+  constructor() {
+    this.alumnes = new Array();
   }
 
+  addAlumne(alumne: Alumne): void {
+    this.alumnes.push(alumne);
+  }
 
+  getLlistatAlumnes(): string {
+    let llistat = "[";
+    this.alumnes.forEach((alumne) => {
+      llistat += alumne.toString();
+    });
+    llistat += "]";
+    return llistat;
+  }
+}
 
-  // PORTA
-  // 1.- Crea una classe Porta, aquesta ha de tenir els atributs de ample, alt, color i oberta (true si oberta i
-  // false si tancada). A aquesta porta hem de crear els mètodes de Obrir, Tancar i mostrar estat (mostra
-  // tots els atributs).
-  // 2.- Instanciar una porta, obrir-la i mostrar el seu estat.
-  // 3.- Crear els mètodes necessaris per a poder inicialitzar cadascuna de les variables i per a que ens
-  // retorne el valor de cada variable.
+class Alumne {
+  nom: string;
+  cognoms: string;
+  nif: string;
+  data: Date;
 
+  constructor(nom: string, cognoms: string, nif: string, data: Date) {
+    this.nom = nom;
+    this.cognoms = cognoms;
+    this.nif = nif;
+    this.data = data;
+  }
+}
 
-  ngOnInit(): void {
-    let porta1: Porta = new Porta();
-    porta1.ample = 200;
-    porta1.oberta = false;
-    console.log("Inicial", porta1.estat());
-    porta1.obrir();
-    console.log("Final", porta1.estat());
-    porta1.tancar();
-    console.log("Final", porta1.estat());
+class LlistaHeros {
+
+  private heros: Hero[] = null;
+
+  constructor() {
+    this.heros = new Array();
+  }
+
+  addHero(hero: Hero): void {
+    this.heros.push(hero);
+  }
+
+  getLlistatHeros(): string {
+    let llistat = "[";
+    this.heros.forEach((hero) => {
+      llistat += hero.toString();
+    });
+    llistat += "]";
+    return llistat;
+  }
+
+  getLlistat() {
+    return this.heros;
   }
 
 }
 
-export class Porta {
-  private _ample: number;
-  private _alt: number;
-  private _color: string;
-  private _oberta: boolean;
-
-
-  constructor() {}
-
-  obrir(): void {
-    this._oberta = true;
-  }
-
-  tancar(): void {
-    this._oberta = false;
-  }
-
-  estat(): string {
-    return "ample: " + this.ample + " oberta: " + this.oberta;
-  }
-
-  get ample(): number {
-    return this._ample;
-  }
-
-  set ample(value: number) {
-    this._ample = value;
-  }
-
-  get alt(): number {
-    return this._alt;
-  }
-
-  set alt(value: number) {
-    this._alt = value;
-  }
-
-  get color(): string {
-    return this._color;
-  }
-
-  set color(value: string) {
-    this._color = value;
-  }
-
-  get oberta(): boolean {
-    return this._oberta;
-  }
-
-  set oberta(value: boolean) {
-    this._oberta = value;
-  }
-}
-
-
-
-
-export class Hero {
+  class Hero {
   private _nom: string;
   private _forca: number;
   private _poder: string;
   private _velocitat: number;
   private _any: number;
-
 
   constructor(nom: string, forca: number, poder: string, velocitat: number, any: number) {
     this._nom = nom;
@@ -164,4 +188,9 @@ export class Hero {
   set any(value: number) {
     this._any = value;
   }
-}
+
+  toString(): string {
+    return "{" + this.nom + ", " + this.forca + " , " + this.poder + " , " + this.velocitat + ", " + this.any+"}";
+  }
+
+  }

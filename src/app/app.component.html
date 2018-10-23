@@ -1,19 +1,39 @@
-<h2>Heros</h2>
-
-
-<button (click)="recuperarDades($event)">Carrega dades de servidor</button>
-
-<div *ngIf="recuperat">
-  <div *ngFor="let hero of herosObject" class="boxHero">
-    <mat-card>
-      <mat-card-title>{{hero.nom}}</mat-card-title>
-      <mat-card-content>
-        <p>Força: {{hero.forca}}</p>
-        <p>Poder: {{hero.poder}}</p>
-        <p>Velocitat: {{hero.velocitat}}</p>
-        <p>Any de primera publicació: {{hero.any}}</p>
-      </mat-card-content>
-    </mat-card>
-  </div>
+<div class="container">
+  <h1>Hero Form</h1>
+  <form action="#" method="POST">
+    <div class="form-group">
+      <label for="_nom">Nom: </label>
+      <input formControlName="nom" type="text" class="form-control" id="_nom" value="spiderman">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="_forca">Forca: </label>
+      <input formControlName="forca" type="number" class="form-control" id="_forca" value="25">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="_poder">Poder: </label>
+      <input formControlName="poder" type="text" class="form-control" id="_poder" value="fog">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="_velocitat">Velocitat: </label>
+      <input formControlName="velocitat" type="number" class="form-control" id="_velocitat" value="300">
+    </div>
+    <br/>
+    <div class="form-group">
+      <label for="_any">Any: </label>
+      <input formControlName="any" type="number" class="form-control" id="_any" value="1982">
+    </div>
+    <br/>
+    <button (click)="recuperarDades($event)">Carrega dades de servidor</button>
+  </form>
+  <div id="box"><p></p></div>
 </div>
-<div *ngIf="herosObject.length == 0">No hi ha res</div>
+<h3>Llistat d'heros</h3>
+
+<ul *ngFor="let hero of llistatHeros.getLlistat()">
+  <li>
+    <p>{{hero.toString()}}</p>
+  </li>
+</ul>

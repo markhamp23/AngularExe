@@ -4,3 +4,8 @@
   width: 300px;
   display: inline-block;
 }
+
+
+.canviColor {
+  background-color: red;
+}

@@ -4,13 +4,9 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule, MatIconModule, MatMenuModule} from "@angular/material";
-import {PortaComponent} from "./porta/porta.component";
-import {PortaModule} from "./porta/porta.module";
-
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent},
-  { path: 'porta', loadChildren: './porta/porta.module#Portamodule'},
+  { path: '', component: AppComponent}
 ];
 
 
@@ -24,14 +20,12 @@ const appRoutes: Routes = [
     BrowserModule,
     MatCardModule,
     MatMenuModule,
-    MatIconModule,
-    PortaModule
+    MatIconModule
   ],
   exports: [
     MatCardModule,
     MatMenuModule,
-    MatIconModule,
-    PortaModule
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
