@@ -1,39 +1,43 @@
+<!--<div class="container">-->
+  <!--<h1>Hero Form</h1>-->
+  <!--<form>-->
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input matInput formControlName="nom" type="text" class="form-control" value="spiderman" />-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input matInput formControlName="forca" type="number" class="form-control" value="25">-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input matInput formControlName="poder" type="text" class="form-control" value="fog">-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input matInput formControlName="velocitat" type="number" class="form-control" value="300">-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="example-full-width">-->
+      <!--<input matInput formControlName="any" type="number" class="form-control" value="1982">-->
+    <!--</mat-form-field>-->
+    <!--<button (click)="recuperarDades($event)">Carrega dades de servidor</button>-->
+  <!--</form>-->
+<!--</div>-->
+
 <div class="container">
   <h1>Hero Form</h1>
-  <form action="#" method="POST">
-    <div class="form-group">
-      <label for="_nom">Nom: </label>
-      <input formControlName="nom" type="text" class="form-control" id="_nom" value="spiderman">
-    </div>
-    <br/>
-    <div class="form-group">
-      <label for="_forca">Forca: </label>
-      <input formControlName="forca" type="number" class="form-control" id="_forca" value="25">
-    </div>
-    <br/>
-    <div class="form-group">
-      <label for="_poder">Poder: </label>
-      <input formControlName="poder" type="text" class="form-control" id="_poder" value="fog">
-    </div>
-    <br/>
-    <div class="form-group">
-      <label for="_velocitat">Velocitat: </label>
-      <input formControlName="velocitat" type="number" class="form-control" id="_velocitat" value="300">
-    </div>
-    <br/>
-    <div class="form-group">
-      <label for="_any">Any: </label>
-      <input formControlName="any" type="number" class="form-control" id="_any" value="1982">
-    </div>
-    <br/>
+  <form>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="nom" type="text" class="form-control" name="nom"/>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="forca" type="number" class="form-control" name="forca" value="25">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="poder" type="text" class="form-control" name="poder" value="fog">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="velocitat" type="number" class="form-control" name="velocitat" value="300">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="any" type="number" class="form-control" name="any" value="1982">
+    </mat-form-field>
     <button (click)="recuperarDades($event)">Carrega dades de servidor</button>
   </form>
-  <div id="box"><p></p></div>
 </div>
-<h3>Llistat d'heros</h3>
-
-<ul *ngFor="let hero of llistatHeros.getLlistat()">
-  <li>
-    <p>{{hero.toString()}}</p>
-  </li>
-</ul>

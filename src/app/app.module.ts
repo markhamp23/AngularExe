@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule, MatIconModule, MatMenuModule} from "@angular/material";
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   { path: '', component: AppComponent}
@@ -18,14 +20,18 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     BrowserModule,
+    FormsModule,
     MatCardModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule
   ],
   exports: [
+    FormsModule,
     MatCardModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
