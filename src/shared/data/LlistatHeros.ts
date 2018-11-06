@@ -14,14 +14,24 @@ export class LlistaHeros {
 
   getLlistatHeros(): string {
     let llistat = "[";
+    llistat += '\n';
     this.heros.forEach((hero) => {
       llistat += hero.toString();
+      llistat += '\n';
     });
     llistat += "]";
     return llistat;
   }
 
+  size(): number {
+    return this.heros.length;
+  }
+
   getLlistat() {
     return this.heros;
+  }
+
+  deleteHero() {
+    
   }
 }

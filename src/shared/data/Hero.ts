@@ -13,6 +13,7 @@ export class Hero {
     this._any = any;
   }
 
+
   get nom(): string {
     return this._nom;
   }

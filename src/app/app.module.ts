@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule, MatIconModule, MatMenuModule} from "@angular/material";
 import {MatInputModule} from '@angular/material/input';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   { path: '', component: AppComponent}
@@ -21,6 +21,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
   ],
   exports: [
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatMenuModule,
     MatIconModule,
