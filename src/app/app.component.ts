@@ -54,11 +54,11 @@ export class AppComponent {
     return false;
   }
 
-  delete(id,nom) {
+  delete(id) {
 
-    this.list.deleteHero(this.list.size());
-   console.log(id,nom);
-
+    this.list.deleteHero(id);
+    console.log(this.list.getLlistatToString());
+    //dfgfd
   }
 
 }

@@ -96,7 +96,8 @@
     <!--</li>-->
   <!--</ul>-->
 
-  <mat-card [style.background-color]="'lightgrey'" *ngFor="let hero of list.getLlistat()">
+  <ng-container *ngFor="let hero of list.getLlistat()">
+  <mat-card [style.background-color]="'lightgrey'"  *ngIf="hero != null">
     <mat-card-title>{{hero.nom}}</mat-card-title>
     <mat-card-content>
       <p>Forca: {{hero.forca}}</p>
@@ -105,9 +106,10 @@
       <p>Any: {{hero.any}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="delete(hero.id,hero.nom);" mat-button>Eliminar</button>
+      <button (click)="delete(hero.id);" mat-button>Eliminar</button>
     </mat-card-actions>
   </mat-card>
+  </ng-container>
 
 
 

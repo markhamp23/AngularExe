@@ -12,15 +12,15 @@ export class LlistaHeros {
     this.heros.push(hero);
   }
 
-  getLlistatHeros(): string {
-    let llistat = "[";
-    llistat += '\n';
+  getLlistatToString(): string {
+
+    const arrayAux = [];
+
     this.heros.forEach((hero) => {
-      llistat += hero.toString();
-      llistat += '\n';
+      if (hero != null) arrayAux.push(hero.toString());
     });
-    llistat += "]";
-    return llistat;
+
+    return "[" + arrayAux.join(",") + "]";
   }
 
   size(): number {
@@ -31,12 +31,12 @@ export class LlistaHeros {
     return this.heros;
   }
 
-  deleteHero() {
-
-    for(let i = 0; i < this.heros.length; i++) {
-      const hero: Hero = this.heros[i];
-
-    }
-
+  deleteHero(posicio: number): void {
+    //console.log(posicio);
+     for(let i = 0; i < this.heros.length; i++) {
+       const hero: Hero = this.heros[i];
+       if (i == posicio) this.heros[i] = null;
+       this.getLlistatToString();
+     }
   }
 }
