@@ -27,11 +27,16 @@ export class LlistaHeros {
     return this.heros.length;
   }
 
-  getLlistat() {
+  getLlistat(): Hero[] {
     return this.heros;
   }
 
   deleteHero() {
-    
+
+    for(let i = 0; i < this.heros.length; i++) {
+      const hero: Hero = this.heros[i];
+
+    }
+
   }
 }

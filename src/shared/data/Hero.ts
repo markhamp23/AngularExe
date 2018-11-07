@@ -1,11 +1,13 @@
 export class Hero {
+  private _id: number;
   private _nom: string;
   private _forca: number;
   private _poder: string;
   private _velocitat: number;
   private _any: number;
 
-  constructor(nom: string, forca: number, poder: string, velocitat: number, any: number) {
+  constructor(id:number, nom: string, forca: number, poder: string, velocitat: number, any: number) {
+    this._id = id;
     this._nom = nom;
     this._forca = forca;
     this._poder = poder;
@@ -13,6 +15,13 @@ export class Hero {
     this._any = any;
   }
 
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
 
   get nom(): string {
     return this._nom;
@@ -55,6 +64,6 @@ export class Hero {
   }
 
   toString(): string {
-    return "{" + this.nom + ", " + this.forca + " , " + this.poder + " , " + this.velocitat + ", " + this.any+"}";
+    return "{" + this.id + "," + this.nom + ", " + this.forca + " , " + this.poder + " , " + this.velocitat + ", " + this.any+"}";
   }
 }
