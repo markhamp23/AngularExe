@@ -9,7 +9,12 @@ export class LlistaHeros {
   }
 
   addHero(hero: Hero): void {
+    hero.index = this.setIndexNewHero();
     this.heros.push(hero);
+  }
+
+  private setIndexNewHero(): string {
+    return Math.random().toString(36).substr(2);
   }
 
   getLlistatToString(): string {
@@ -31,12 +36,15 @@ export class LlistaHeros {
     return this.heros;
   }
 
-  deleteHero(posicio: number): void {
-    //console.log(posicio);
-     for(let i = 0; i < this.heros.length; i++) {
-       const hero: Hero = this.heros[i];
-       if (i == posicio) this.heros[i] = null;
-       this.getLlistatToString();
-     }
+  deleteHero(index: string): void {
+    const pos = this.heros.findIndex(function(x) {
+      return x.index == index
+    });
+
+    if (pos != -1) {
+      this.heros.splice(pos, 1);
+    }
+
+    console.log(this.heros);
   }
 }

@@ -11,6 +11,8 @@ import {Error} from "tslint/lib/error";
 })
 export class AppComponent {
 
+  idFictici = 0;
+
   teError: boolean = false;
   success: boolean = false;
   missatgeSuccess: string = "S'han enviat les dades correctament";
@@ -19,7 +21,6 @@ export class AppComponent {
   list: LlistaHeros = new LlistaHeros();
 
   formulari: any = {
-    id: 0,
     nom: ["Batman", [Validators.pattern(/^([a-zA-Z0-9_-]){1,20}$/)]],
     forca: 54,
     poder: 1,
@@ -40,12 +41,8 @@ export class AppComponent {
 
       let valors: any = this.fg.value;
 
-      let hero = new Hero(this.list.size(),valors["nom"],valors["forca"],valors["poder"],valors["velocitat"],valors["any"]);
-      //let hero = new Hero(valors.nom,valors.forca,valors.poder,valors.velocitat,valors.any);
+      let hero = new Hero(this.idFictici, valors["nom"],valors["forca"],valors["poder"],valors["velocitat"],valors["any"]);
       this.list.addHero(hero);
-
-      // console.log(this.list.getLlistatHeros());
-      // console.log(this.list.size());
 
     }else{
       this.teError = true;
@@ -54,13 +51,9 @@ export class AppComponent {
     return false;
   }
 
-  delete(id) {
-
-    this.list.deleteHero(id);
-    console.log(this.list.getLlistatToString());
-    //dfgfd
+  delete(hero: Hero) {
+    this.list.deleteHero(hero.index);
   }
-
 }
 
 

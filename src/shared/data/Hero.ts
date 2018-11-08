@@ -1,26 +1,40 @@
-export class Hero {
-  private _id: number;
+abstract class Base {
+  private _id: Number;
+  private _index: string;
+
+  get id(): Number {
+    return this._id;
+  }
+
+  set id(value: Number) {
+    this._id = value;
+  }
+
+  get index(): string {
+    return this._index;
+  }
+
+  set index(value: string) {
+    this._index = value;
+  }
+}
+
+export class Hero extends Base {
   private _nom: string;
   private _forca: number;
   private _poder: string;
   private _velocitat: number;
   private _any: number;
 
-  constructor(id:number, nom: string, forca: number, poder: string, velocitat: number, any: number) {
-    this._id = id;
+  constructor(id: Number, nom: string, forca: number, poder: string, velocitat: number, any: number) {
+    super();
+
+    this.id = id;
     this._nom = nom;
     this._forca = forca;
     this._poder = poder;
     this._velocitat = velocitat;
     this._any = any;
-  }
-
-  get id(): number {
-    return this._id;
-  }
-
-  set id(value: number) {
-    this._id = value;
   }
 
   get nom(): string {
@@ -67,3 +81,4 @@ export class Hero {
     return "{" + this.id + "," + this.nom + ", " + this.forca + " , " + this.poder + " , " + this.velocitat + ", " + this.any+"}";
   }
 }
+
