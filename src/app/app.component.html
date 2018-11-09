@@ -43,7 +43,7 @@
 <!--</div>-->
 
 <div>
-  <h1>Hero Form</h1>
+  <h1>Hero Formulari Form</h1>
   <form [formGroup]="fg">
     <mat-form-field class="example-full-width">
       <input matInput formControlName="nom"  type="text" class="form-control" placeholder="Nom" required/>
@@ -70,8 +70,10 @@
       <mat-error *ngIf="fg.controls['any'].hasError('pattern')">Format erroni, Camp requerit amb 4 caràcteres..</mat-error>
       <mat-error *ngIf="fg.controls['any'].hasError('required')">Camp requerit.</mat-error>
     </mat-form-field>
-
-    <button (click)="recuperarDades($event)">Carrega dades de servidor</button>
+    <input type="hidden" formControlName="index">
+    <br><br>
+    <button (click)="recuperarDades($event)">Carrega dades de servidor</button>&nbsp;
+    <button (click)="modificarDades($event)">Modificar dades de servidor</button>
   </form>
   <div>
     <p *ngIf="teError">
@@ -82,6 +84,7 @@
     </p>
   </div>
 
+  <br>
 
   <h2>My Heroes List</h2>
 
@@ -106,7 +109,8 @@
       <p>Any: {{hero.any}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="delete(hero)" mat-button>Eliminar</button>
+      <button (click)="delete(hero)" mat-button>Eliminar</button>&nbsp;
+      <button (click)="update(hero)" mat-button> Modificar</button>
     </mat-card-actions>
   </mat-card>
   </ng-container>

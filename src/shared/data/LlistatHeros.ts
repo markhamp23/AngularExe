@@ -47,4 +47,29 @@ export class LlistaHeros {
 
     console.log(this.heros);
   }
+
+  updatehero(hero: Hero): void {
+
+    let esta=false;
+
+    for (let i = 0; i < this.size(); i++) {
+      let oneHeroArray: Hero = this.heros[i];
+      if(oneHeroArray.index == hero.index) esta=true;
+
+
+    }
+
+    if(esta==true){
+
+      //console.log("TROBAT");
+
+      this.deleteHero(hero.index)
+      hero.index = this.setIndexNewHero();
+      this.heros.push(hero);
+
+
+    }
+
+  }
+
 }

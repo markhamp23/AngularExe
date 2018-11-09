@@ -25,7 +25,8 @@ export class AppComponent {
     forca: 54,
     poder: 1,
     velocitat: 1,
-    any: 2018
+    any: 2018,
+    index: null
   };
 
   fg: FormGroup = null;
@@ -43,6 +44,7 @@ export class AppComponent {
 
       let hero = new Hero(this.idFictici, valors["nom"],valors["forca"],valors["poder"],valors["velocitat"],valors["any"]);
       this.list.addHero(hero);
+      this.fg.reset();
 
     }else{
       this.teError = true;
@@ -54,6 +56,31 @@ export class AppComponent {
   delete(hero: Hero) {
     this.list.deleteHero(hero.index);
   }
+
+  update(hero: Hero) {
+    this.fg.controls['nom'].setValue(hero.nom);
+    this.fg.controls['forca'].setValue(hero.forca);
+    this.fg.controls['poder'].setValue(hero.poder);
+    this.fg.controls['velocitat'].setValue(hero.velocitat);
+    this.fg.controls['any'].setValue(hero.any);
+    this.fg.controls['index'].setValue(hero.index);
+
+  }
+
+  modificarDades(event) {
+    console.log(this.fg);
+
+    if (this.fg.valid) {
+
+      let hero: any = this.fg.value;
+
+      this.fg.reset();
+      this.list.updatehero(hero);
+    }
+
+    return false;
+  }
+
 }
 
 
