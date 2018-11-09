@@ -50,26 +50,19 @@ export class LlistaHeros {
 
   updatehero(hero: Hero): void {
 
-    let esta=false;
+    const pos = this.heros.findIndex(function(x) {
+      return x.index == hero.index
+    });
 
-    for (let i = 0; i < this.size(); i++) {
-      let oneHeroArray: Hero = this.heros[i];
-      if(oneHeroArray.index == hero.index) esta=true;
+    if (pos != -1) {
+        let oneHeroArray: Hero = this.heros[pos];
 
-
-    }
-
-    if(esta==true){
-
-      //console.log("TROBAT");
-
-      this.deleteHero(hero.index)
-      hero.index = this.setIndexNewHero();
-      this.heros.push(hero);
-
-
-    }
-
+        oneHeroArray.nom = hero.nom;
+        oneHeroArray.velocitat = hero.velocitat;
+        oneHeroArray.forca = hero.forca;
+        oneHeroArray.poder = hero.poder;
+        oneHeroArray.any = hero.any;
+      }
   }
 
 }
