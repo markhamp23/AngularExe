@@ -1,0 +1,94 @@
+{
+  "prova": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "heros": [ {
+    "nom": "66566666666666",
+    "forca": 111111,
+    "poder": "11111",
+    "velocitat": 111111,
+    "any": "1111",
+    "id": 1,
+    "index": "p67zp4ioj18"
+  },
+    {
+      "nom": "Ironman1",
+      "forca": 244,
+      "poder": 55,
+      "velocitat": 80,
+      "any": 1981,
+      "id": 3,
+      "index": "i87cmugx7b"
+    },
+    {
+      "nom": "2222222",
+      "forca": 2222222,
+      "poder": "222222",
+      "velocitat": 222222,
+      "any": "2222",
+      "id": 4,
+      "index": "8z54hr8qlj5"
+    },
+    {
+      "id": 5,
+      "nom": "Batman777",
+      "forca": 54,
+      "velocitat": 1,
+      "poder": 1,
+      "any": 2018
+    },
+    {
+      "id": 6,
+      "nom": "Batman777",
+      "forca": 54,
+      "velocitat": 1,
+      "poder": 1,
+      "any": 2018
+    }],
+  "heros2": [
+    {
+      "nom": "66566666666666",
+      "forca": 111111,
+      "poder": "11111",
+      "velocitat": 111111,
+      "any": "1111",
+      "id": 1,
+      "index": "p67zp4ioj18"
+    },
+    {
+      "nom": "Ironman1",
+      "forca": 244,
+      "poder": 55,
+      "velocitat": 80,
+      "any": 1981,
+      "id": 3,
+      "index": "i87cmugx7b"
+    },
+    {
+      "nom": "2222222",
+      "forca": 2222222,
+      "poder": "222222",
+      "velocitat": 222222,
+      "any": "2222",
+      "id": 4,
+      "index": "8z54hr8qlj5"
+    },
+    {
+      "id": 5,
+      "nom": "Batman777",
+      "forca": 54,
+      "velocitat": 1,
+      "poder": 1,
+      "any": 2018
+    }
+  ]
+}

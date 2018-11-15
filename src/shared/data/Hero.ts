@@ -80,5 +80,16 @@ export class Hero extends Base {
   toString(): string {
     return "{" + this.id + "," + this.nom + ", " + this.forca + " , " + this.poder + " , " + this.velocitat + ", " + this.any+"}";
   }
+
+  mappingToHTTP(): any {
+     return {
+       "id": this.id,
+       "nom": this._nom,
+       "forca": this.forca,
+       "velocitat": this._velocitat,
+       "poder": this._poder,
+       "any": this._any
+     }
+  }
 }
 

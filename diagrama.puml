@@ -1,0 +1,15 @@
+@startuml
+
+class Hero {
+id int
+nom string
+velocitat number
+}
+
+class ListHeros {
+list array
+}
+
+ListHeros <-- Hero
+
+@enduml

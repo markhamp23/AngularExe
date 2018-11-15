@@ -36,6 +36,15 @@ export class LlistaHeros {
     return this.heros;
   }
 
+  setLlistat(list: Hero[]) {
+    this.heros = list;
+  }
+
+  /**
+   * Esborrar heroi array
+   *
+   * @param {string} index paramètric
+   */
   deleteHero(index: string): void {
     const pos = this.heros.findIndex(function(x) {
       return x.index == index

@@ -46,7 +46,7 @@
   <h1>Hero Formulari Form</h1>
   <form [formGroup]="fg">
     <mat-form-field class="example-full-width">
-      <input matInput formControlName="nom"  type="text" class="form-control" placeholder="Nom" required/>
+      <input matInput formControlName="nom"  type="text" class="form-control" placeholder="Nom"/>
       <mat-error *ngIf="fg.controls['nom'].hasError('pattern')">Format erroni, Camp requerit de 20 caràcteres.</mat-error>
       <mat-error *ngIf="fg.controls['nom'].hasError('required')">Camp requerit.</mat-error>
     </mat-form-field>
@@ -66,14 +66,19 @@
       <mat-error *ngIf="fg.controls['velocitat'].hasError('required')">Camp requerit.</mat-error>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput formControlName="any"  type="text" class="form-control" placeholder="Any" required/>
+      <input matInput formControlName="any"  type="text" class="form-control" placeholder="Any" />
       <mat-error *ngIf="fg.controls['any'].hasError('pattern')">Format erroni, Camp requerit amb 4 caràcteres..</mat-error>
       <mat-error *ngIf="fg.controls['any'].hasError('required')">Camp requerit.</mat-error>
     </mat-form-field>
     <input type="hidden" formControlName="index">
+    <input type="hidden" formControlName="id">
     <br><br>
-    <button (click)="recuperarDades($event)">Carrega dades de servidor</button>&nbsp;
-    <button (click)="modificarDades($event)">Modificar dades de servidor</button>
+    <button (click)="recuperarDades($event)" mat-button>Add hero</button>&nbsp;
+    <button (click)="modificarDades($event)" mat-button>Update hero</button>&nbsp;
+    <button (click)="eliminartot($event)" mat-button>  Eliminar Tot</button>&nbsp;
+    <button (click)="cercar($event)" mat-button>  Search</button>
+
+
   </form>
   <div>
     <p *ngIf="teError">
@@ -87,6 +92,8 @@
   <br>
 
   <h2>My Heroes List</h2>
+
+
 
   <!--<div id="merda"></div>-->
   <!--<ul class="heroes">-->
@@ -107,10 +114,12 @@
       <p>Velocitat: {{hero.velocitat}}</p>
       <p>Poder: {{hero.poder}}</p>
       <p>Any: {{hero.any}}</p>
+      <p>index: {{hero.index}}</p>
+      <p>id: {{hero.id}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="delete(hero)" mat-button>Eliminar</button>&nbsp;
-      <button (click)="update(hero)" mat-button> Modificar</button>
+      <button (click)="delete($event, hero)" mat-button>Eliminar</button>&nbsp;
+      <button (click)="update($event, hero)" mat-button> Modificar</button>
     </mat-card-actions>
   </mat-card>
   </ng-container>
