@@ -1,5 +1,80 @@
 <div>
-<h2>Servei tiquets temporada alta</h2>
-
+<h1>Servei tiquets temporada alta</h1>
 </div>
+
+<div class="container">
+  <h2>Entrada Ticket</h2>
+  <form [formGroup]="fg">
+
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="nomObra"  type="text" class="form-control" placeholder="Nom Obra" required />
+      <mat-error *ngIf="fg.controls['nomObra'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
+      <mat-error *ngIf="fg.controls['nomObra'].hasError('required')">Camp requerit.</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="data"  type=date class="form-control" placeholder="Data Event" required />
+      <mat-error *ngIf="fg.controls['data'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="preu"  type=number class="form-control" placeholder="Preu Entrada" required />
+      <mat-error *ngIf="fg.controls['preu'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput formControlName="numLocalitats"  type="preu" class="form-control" placeholder="Numero Localitats" required />
+      <mat-error *ngIf="fg.controls['numLocalitats'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
+
+    </mat-form-field>
+
+    <br><br>
+    <input type="hidden" formControlName="index">
+    <button (click)="recuperarDades($event)">Carrega dades del servidor</button>&nbsp;
+    <button (click)="modificarDades($event)">Modificar dades del servidor</button>&nbsp;
+    <button (click)="borrarDades($event)">Borrar dades del servidor</button>
+
+  </form>
+
+  <div>
+    <p *ngIf="teError">
+      <mat-error>{{misstatgeErrorForm}}</mat-error>
+    </p>
+    <p *ngIf="success">
+      {{missatgeSuccess}}
+    </p>
+  </div>
+</div>
+
+
+
+<h1>Llistat d'Entrades</h1>
+<h3>Entrades Disponibles:</h3>
+
+<ng-container *ngFor="let entrada of list.getEntradesAll()">
+  <mat-card [style.background-color]="'lightgrey'"  *ngIf="entrada != null">
+    <mat-card-title>{{entrada.nomObra}}</mat-card-title>
+    <mat-card-content>
+      <p>Data: {{entrada.data}}</p>
+      <p>Numero de Localitats: {{entrada.numLocalitats}}</p>
+      <p>Preu Entrada: {{entrada.preu}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="delete(entrada.index)" mat-button>Eliminar</button>&nbsp;
+      <button (click)="update(entrada)" mat-button> Modificar</button>
+      <button (click)="posicio1(entrada)" mat-button> Posicio1</button>
+      <button (click)="posicio2(entrada)" mat-button> Posicio2</button>
+    </mat-card-actions>
+  </mat-card>
+  <br>
+</ng-container>
+
+
+
+
+
 
