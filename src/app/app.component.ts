@@ -3,6 +3,7 @@ import {Entrada} from "../shared/data/Entrada";
 import {LlistatEntrades} from "../shared/data/LlistatEntrades";
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {Hero} from "../shared/data/Hero";
+import {BehaviorSubject} from "rxjs/internal/BehaviorSubject";
 
 @Component({
   selector: 'app-root',
@@ -11,11 +12,18 @@ import {Hero} from "../shared/data/Hero";
 })
 export class AppComponent {
 
-
+  llistaAux: Entrada[] = [null, null, null];
+  sonIguals: boolean = false;
   teError: boolean = false;
   success: boolean = false;
+  Posicio1: boolean = false;
+  Posicio2: boolean = false;
+
   missatgeSuccess: string = "S'han enviat les dades correctament";
   misstatgeErrorForm: string = "Falten dades per completar el tràmit";
+
+  missatgeIguals: string = "Són iguals";
+  missatgeNoIguals: string = "No són iguals";
 
   list: LlistatEntrades = new LlistatEntrades();
 
@@ -27,12 +35,17 @@ export class AppComponent {
     index: new FormControl()
   });
 
+  pos1: FormGroup = new FormGroup({
+    nomObra: new FormControl(),
+    index: new FormControl()
+  });
+
   constructor() {
     this.fg.patchValue({
-      nomObra: "",
-      data: '',
-      preu: '',
-      numLocalitats: ''
+      nomObra: "La Cenicienta",
+      data: '2018-03-21',
+      preu: 25,
+      numLocalitats: 100
     })
   }
 
@@ -43,10 +56,19 @@ export class AppComponent {
 
       let valors: any = this.fg.value;
 
-      this.list.addEntrada(valors);
+      const novaEntrada = new Entrada(
+        null,
+        valors.nomObra,
+        valors.data,
+        valors.preu,
+        valors.numLocalitats
+      );
+
+      this.list.addEntrada(novaEntrada);
+
       this.fg.reset();
-      // console.log("Contingut llista");
-      // console.log(this.list.getEntradesAll());
+      this.success = false;
+      this.teError = false;
 
     } else {
       this.teError = true;
@@ -58,33 +80,32 @@ export class AppComponent {
   delete(index) {
 
     this.list.doDeleteOne(index);
+    this.fg.reset();
+    this.success = false;
+    this.teError = false;
   }
 
   borrarDades(index) {
 
     this.list.doDeleteAll();
-  }
-
-  posicio1(index) {
-
-    //this.list.doMove1();
-    return null;
-  }
-
-
-  posicio2(index) {
-
-    //this.list.doMove2();
-    return null;
+    this.fg.reset();
+    this.success = false;
+    this.teError = false;
   }
 
 
 
+  posicio(index, pos: number) {
+    this.llistaAux[pos] = this.list.getEntradaOne(index);
+
+    this.sonIguals = this.list.toEquals(this.llistaAux);
+  }
+
+  //observable: BehaviorSubject<any> = new BehaviorSubject(null);
 
   update(list: Entrada) {
     event.preventDefault();
 
-    //this.fg.controls['id'].setValue(list.id);
     this.fg.controls['index'].setValue(list.index);
     this.fg.controls['nomObra'].setValue(list.nomObra);
     this.fg.controls['data'].setValue(list.data);
@@ -98,25 +119,14 @@ export class AppComponent {
     if (this.fg.valid) {
 
       let entrada: any = this.fg.value;
-
-
       this.list.doUpdateOne(entrada);
 
       this.fg.reset();
+      this.success = false;
+      this.teError = false;
     }
 
     //return false;
   }
 
-
-
-
-
 }
-
-
-
-
-
-
-

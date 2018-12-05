@@ -1,6 +1,6 @@
 abstract class Base {
   private _id: Number;
-  private _index: string;
+  public _index: string;
 
   get id(): Number {
     return this._id;
@@ -83,5 +83,24 @@ export class Entrada extends Base {
       "numLocalitats": this._numLocalitats
     }
 
+  }
+
+  toEquals(entrada: Entrada): boolean {
+
+    if (entrada == null) {
+      return false;
+    }
+
+    if (!(entrada instanceof Entrada)) {
+      return false;
+    }
+
+    if (this.nomObra != entrada.nomObra) return false;
+    else if (this.id != entrada.id) return false;
+    else if (this.data != entrada.data) return false;
+    else if (this.preu != entrada.preu) return false;
+    else if (this.numLocalitats != entrada.numLocalitats) return false;
+
+    return true;
   }
 }

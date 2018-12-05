@@ -5,39 +5,32 @@
 <div class="container">
   <h2>Entrada Ticket</h2>
   <form [formGroup]="fg">
-
-
     <mat-form-field class="example-full-width">
       <input matInput formControlName="nomObra"  type="text" class="form-control" placeholder="Nom Obra" required />
       <mat-error *ngIf="fg.controls['nomObra'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
       <mat-error *ngIf="fg.controls['nomObra'].hasError('required')">Camp requerit.</mat-error>
-
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput formControlName="data"  type=date class="form-control" placeholder="Data Event" required />
       <mat-error *ngIf="fg.controls['data'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
-
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput formControlName="preu"  type=number class="form-control" placeholder="Preu Entrada" required />
       <mat-error *ngIf="fg.controls['preu'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
-
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
       <input matInput formControlName="numLocalitats"  type="preu" class="form-control" placeholder="Numero Localitats" required />
       <mat-error *ngIf="fg.controls['numLocalitats'].hasError('pattern')">Format erroni, Camp requerit.</mat-error>
-
     </mat-form-field>
 
     <br><br>
     <input type="hidden" formControlName="index">
     <button (click)="recuperarDades($event)">Carrega dades del servidor</button>&nbsp;
     <button (click)="modificarDades($event)">Modificar dades del servidor</button>&nbsp;
-    <button (click)="borrarDades($event)">Borrar dades del servidor</button>
-
+    <button (click)="borrarDades($event)">Borrar dades del servidor</button>&nbsp;
   </form>
 
   <div>
@@ -50,9 +43,22 @@
   </div>
 </div>
 
+<div>
+  <p *ngIf="llistaAux[0]">
+    {{llistaAux[0].toString()}}
+  </p>
+  <p *ngIf="llistaAux[1]">
+    {{llistaAux[1].toString()}}
+  </p>
+  <p *ngIf="llistaAux[0] != null && llistaAux[1] != null">
+    {{ (sonIguals ? missatgeIguals : missatgeNoIguals)}}
+  </p>
+</div>
 
 
+<div>
 <h1>Llistat d'Entrades</h1>
+</div>
 <h3>Entrades Disponibles:</h3>
 
 <ng-container *ngFor="let entrada of list.getEntradesAll()">
@@ -65,13 +71,16 @@
     </mat-card-content>
     <mat-card-actions>
       <button (click)="delete(entrada.index)" mat-button>Eliminar</button>&nbsp;
-      <button (click)="update(entrada)" mat-button> Modificar</button>
-      <button (click)="posicio1(entrada)" mat-button> Posicio1</button>
-      <button (click)="posicio2(entrada)" mat-button> Posicio2</button>
+      <button (click)="update(entrada)" mat-button> Modificar</button>&nbsp;
+      <button (click)="posicio(entrada.index, 0)" mat-button> Posicio1</button>&nbsp;
+      <button (click)="posicio(entrada.index, 1)" mat-button> Posicio2</button>
+      <button (click)="posicio(entrada.index, 2)" mat-button> Posicio3</button>
     </mat-card-actions>
   </mat-card>
   <br>
 </ng-container>
+
+
 
 
 

@@ -1,5 +1,7 @@
+
 import {Entrada} from "./Entrada";
 import {Hero} from "./Hero";
+import {forEach} from "@angular/router/src/utils/collection";
 //import {Hero} from "./Hero";
 
 export class LlistatEntrades {
@@ -50,7 +52,15 @@ export class LlistatEntrades {
     return this.list = list;
   }
 
-  getEntradaOne(id: number): Entrada {
+  getEntradaOne(index: string): Entrada {
+    const pos = this.list.findIndex(function(x) {
+      return x.index == index
+    });
+
+    if (pos != -1) {
+      return this.list[pos];
+    }
+
     return null;
   }
 
@@ -84,10 +94,9 @@ export class LlistatEntrades {
       oneEntradaArray.preu = entrada.preu;
       oneEntradaArray.numLocalitats = entrada.numLocalitats;
 
-      console.log(this.list);
+      //(this.list);
 
     }
-
   }
 
   doDeleteAll(): void {
@@ -107,14 +116,12 @@ export class LlistatEntrades {
     //  this.doDeleteOne(entrada.index);
     //});
 
-
-
-  /*
-    this.list.forEach((entrada,index) =>
-    {
-      if (entrada != null) this.list.splice(0, 1);
-    });
-  */
+    /*
+      this.list.forEach((entrada,index) =>
+      {
+        if (entrada != null) this.list.splice(0, 1);
+      });
+    */
   }
 
   doDeleteOne(index: string): void {
@@ -129,21 +136,52 @@ export class LlistatEntrades {
     console.log(this.list);
   }
 
-  toEquals(entrada1: Entrada, entrada2: Entrada): boolean {
+  toEquals(entrada: Entrada[]): boolean {
 
-  let v = Entrada[0];
-  let f = Entrada[1];
 
-  if (v == f ) {
-    return true
-  }else{
-    return false;
+
+
+
+
+
+    return true;
+
+    // if ( !(this.isEntrada(entrada1) && this.isEntrada(entrada2)) ) {
+    //   return false;
+    // }
+    //
+    //
+    // return entrada1.toEquals(entrada2);
+
+
+
+    /* else if ( this.isPrimitive(entrada1) || this.isPrimitive(entrada2) ) {
+
+      return false;
+    }else {
+
+      var firstKeys = Object.keys( entrada1 );
+      var secondKeys = Object.keys( entrada2);
+
+      if ( firstKeys.length !== secondKeys.length ) {
+        return false;
+      }else {
+        for ( var prop in entrada1 ) {
+
+          if ( entrada2[prop] === undefined ) {
+            return false;
+          } else if (!this.toEquals(entrada1[prop], entrada2[prop])) {
+            return false;
+          }
+        }
+      }
+    }*/
   }
 
+  // Helper function to determine whether a JavaScript value is a primitive type
 
-
-    return null;
-
+  isEntrada = function ( value ) {
+    return (value instanceof Entrada)
   }
 
   clone(llistat: Entrada[]): Entrada[] {
@@ -165,6 +203,14 @@ export class LlistatEntrades {
   }
 
   setList(list: Entrada[]): void {
+    this.list = list;
+  }
+
+  getListpos(): Entrada[] {
+    return this.list;
+  }
+
+  setListpos(list: Entrada[]): void {
     this.list = list;
   }
 
@@ -203,5 +249,4 @@ export class LlistatEntrades {
     return llistat;
 
   }
-
 }
